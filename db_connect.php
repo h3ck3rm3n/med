@@ -1,7 +1,7 @@
 <?php
 
 function connect(){
-    $config = parse_ini_file('/config/db.ini');
+    $config = parse_ini_file('/config_db.ini');
     $con = mysqli_connect("localhost",$config['username'],$config['password'],$config['db']);
     if(!$con){
         die("Failed to connect to Database"); 

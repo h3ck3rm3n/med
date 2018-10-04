@@ -36,7 +36,7 @@
 	<div class="container">
 		<div class="form_patient">
 			<div class="form_content">
-				<form class="container_form">
+				<form class="container_form" action="insert_fiz.php" method="post">
 					<div class="box_form_input">
 						<label class="imie" for="imie">Imię</label>
 						<input name="imie" onblur="test(this)" onfocus="sprawdz(this)" type="text" />
