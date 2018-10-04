@@ -1,7 +1,7 @@
 <?php
 
     $config = parse_ini_file('config_db.ini');
-    $con = new mysqli_connect("localhost",$config['username'],$config['password'],$config['db']);
+    $con = mysqli_connect("localhost",$config['username'],$config['password'],$config['db']);
     if(!$con){
         die("Failed to connect to Database"); 
     }
@@ -20,12 +20,12 @@
     $Pesel = mysqli_real_escape_string($con, $_POST['PESEL']);
     $Nr_pwz = mysqli_real_escape_string($con, $_POST['nr_pwz']);
     
-    $sql = mysqli_query($con,'INSERT INTO fizjoterapeuci (imie, nazw, ulica, nr_bud, kod_pocztowy, tel, PESEL, nr_pwz) VALUES (null, "` . $Imie . `", "` . $Nazw . `", "` . $Ulica . `", "` . $Nr_bud . `", "` . $Kod_poczt . `", "` . $Tel . `", "` . $Pesel . `", "` . $Nr_pwz . `")');
-	if(!$sql)
+    $sql = "INSERT INTO fizjoterapeuci (imie, nazw, ulica, nr_bud, kod_pocztowy, tel, PESEL, nr_pwz) VALUES ('$Imie','$Nazw','$Ulica','$Nr_bud','$Kod_poczt','$Tel','$Pesel','$Nr_pwz')";
+	if (!mysqli_query($con,$sql)) 
 	{
-	echo 'Not inserted';
-	} else {
-	echo 'Inserted';
+ 		die('Error: ' . mysqli_error($con));
+  	} else {
+		echo 'Inserted';
 	}
 	$con->close();
 	header("refresh:2; url=panel.php");
